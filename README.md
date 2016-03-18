@@ -34,6 +34,11 @@ JSON Schema 是一种用于描述/验证 JSON 数据的结构的声明方式.
 
 在线验证: http://jsonschema.net/#/
 
+# 服务端
+-----------
+
+使用[生成器](https://github.com/hualuomoli/raml-parser-nodejs)生成基于Nodejs的服务端
+
 # 脚本
 -----------
 
