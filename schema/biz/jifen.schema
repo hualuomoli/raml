@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "code": {
+      "id": "http://jsonschema.net/code",
+      "type": "string",
+      "description": "响应编码"
+    },
+    "data": {
+      "id": "http://jsonschema.net/data",
+      "type": "object",
+      "properties": {
+        "point": {
+          "id": "http://jsonschema.net/data/point",
+          "type": "integer",
+          "description": "积分",
+          "minimum": 0
+        }
+      }
+    }
+  },
+  "required": [
+    "code",
+    "data"
+  ]
+}

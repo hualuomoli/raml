@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "code": {
+      "id": "http://jsonschema.net/code",
+      "type": "string",
+      "description": "响应编码"
+    },
+    "data": {
+      "id": "http://jsonschema.net/data",
+      "type": "array",
+      "items": {
+        "id": "http://jsonschema.net/data/1",
+        "type": "object",
+        "properties": {
+          "city": {
+            "id": "http://jsonschema.net/data/1/city",
+            "type": "string",
+            "description": "城市编码"
+          },
+          "cityName": {
+            "id": "http://jsonschema.net/data/1/cityName",
+            "type": "string",
+            "description": "城市名称"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "code",
+    "data"
+  ]
+}

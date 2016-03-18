@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "code": {
+      "id": "http://jsonschema.net/code",
+      "type": "string",
+      "description": "响应编码"
+    },
+    "data": {
+      "id": "http://jsonschema.net/data",
+      "type": "object",
+      "properties": {
+        "pageNumber": {
+          "id": "http://jsonschema.net/data/pageNumber",
+          "type": "integer",
+          "description": "当前数据页码"
+        },
+        "pageSize": {
+          "id": "http://jsonschema.net/data/pageSize",
+          "type": "integer",
+          "description": "每页数据数"
+        },
+        "totalRow": {
+          "id": "http://jsonschema.net/data/totalRow",
+          "type": "integer",
+          "description": "数据总数量"
+        },
+        "list": {
+          "id": "http://jsonschema.net/data/list",
+          "type": "array",
+          "items": {
+            "id": "http://jsonschema.net/data/list/1",
+            "type": "object",
+            "properties": {
+              "picUrl": {
+                "id": "http://jsonschema.net/data/list/1/picUrl",
+                "type": "string",
+                "description": "积分商品图片URL"
+              },
+              "description": {
+                "id": "http://jsonschema.net/data/list/1/description",
+                "type": "string",
+                "description": "积分商品描述"
+              },
+              "price": {
+                "id": "http://jsonschema.net/data/list/1/price",
+                "type": "string",
+                "description": "积分商品价格"
+              },
+              "detailUrl": {
+                "id": "http://jsonschema.net/data/list/1/detailUrl",
+                "type": "string",
+                "description": "积分商品详情URL"
+              }
+            }
+          },
+          "description": "数据集合"
+        }
+      }
+    }
+  }
+}

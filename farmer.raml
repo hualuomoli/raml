@@ -1,0 +1,513 @@
+#%RAML 0.8
+title: 易邦生物
+baseUri: http://server/api/
+version: v0.1
+mediaType: application/json
+
+schemas:
+  - respWithoutDataSchema: !include schema/resp-without-data.schema
+  - respWithDataSchema: !include schema/resp-with-data.schema
+  - respErrorSchema: !include schema/resp-error.schema
+  - pagedSchema: !include schema/paged.schema
+
+traits:
+  # 接口响应中不包含data
+  - respWithoutData:
+      responses:
+        200:
+          body:
+            application/json:
+              schema: respWithoutDataSchema
+              example: |
+                {
+                  "code": "0"
+                }
+  # 接口响应中包含data
+  - respWithData:
+      responses:
+        200:
+          body:
+            application/json:
+              schema: <<exampleSchema>>
+              example: |
+                {
+                  "code": "0",
+                  "data" : <<exampleData>>
+                }
+   # 接口响应错误
+  - respError:
+      responses:
+        500:
+          body:
+            application/json:
+              schema: respErrorSchema
+              example: |
+                {
+                  "code": "9",
+                  "msg" : <<msg>>
+                }
+  # 接口响应的描述
+  - responseDesc:
+      responses:
+        200:
+          description: <<desc>>
+  # 分页
+  - paged:
+      queryParameters:
+          pageNumber:
+            displayName: pageNumber
+            description: 查询的页面编码，从1开始.如第六页=6
+            type: integer
+            minimum: 1
+            required: false
+            default: 1
+            example: 6
+          pageSize:
+            displayName: pageSize
+            description: 查询页面每页显示数据数量，如每页显示二十条数据=20
+            type: integer
+            maximum: 10 
+            required: false
+            default: 10
+            example: 20
+      responses:
+        200:
+          body:
+            application/json:
+              schema: <<exampleSchema>>
+              example: |
+                {
+                  "code" : "0",
+                  "data" : {
+                    "pageNumber" : 1,
+                    "pageSize" : 20,
+                    "totalRow" : 362,
+                    "list" : <<exampleList>>
+                  }
+                }
+ 
+
+  # 查询用户权限
+  - queryToken:
+      queryParameters:
+        username:
+          displayName: username
+          description: 用户唯一标志，使用32位UUID
+          type: string
+          required: true
+          example: 72297c8842604c059b05d28bfb11d10b
+        token:
+          displayName: token
+          description: 用户令牌
+          type: string
+          required: true
+          example: 245accec3c124642967fe476cef558c4
+  - bodyToken:
+      body:
+        application/x-www-form-urlencoded:
+          formParameters:
+            username:
+              displayName: username
+              description: 用户唯一标志，使用32位UUID
+              type: string
+              required: true
+              example: 72297c8842604c059b05d28bfb11d10b
+            token:
+              displayName: token
+              description: 用户令牌
+              type: string
+              required: true
+              example: 245accec3c124642967fe476cef558c4
+              
+#####################################################################
+############################ 养殖户模块 ################################
+#####################################################################
+
+/api/{username}/{token}/farmer:
+  displayName: 养殖户模块
+  description: 养殖户模块，包含养殖户收货地址维护，养殖户二级经销商维护
+  uriParameters:
+    username:
+      displayName: username
+      description: 用户唯一标志，使用32位UUID
+      type: string
+      required: true
+      example: 72297c8842604c059b05d28bfb11d10b
+    token:
+      displayName: token
+      description: 用户令牌
+      type: string
+      required: true
+      example: 245accec3c124642967fe476cef558c4
+      
+  /address:
+    displayName: 养殖户收货地址维护
+    description: 养殖户收货地址维护，包含查询收货地址、新增收货地址、修改收货地址、删除收货地址和设置默认收货地址
+    /list:
+      displayName: 查询收货地址列表
+      description: 查询收货地址列表
+      get: 
+        is:
+          - respWithData:    
+              exampleSchema: !include schema/biz/farmer-address-list.schema
+              exampleData: |
+                [{
+                  "id": "1",
+                  "nickname": "刘保全",
+                  "phone": "15689952699",
+                  "province": "37",
+                  "provinceName": "山东省",
+                  "city": "02",
+                  "cityName": "青岛市",
+                  "county": "03",
+                  "countyName": "市北区",
+                  "address": "夹岭沟小区16号楼",
+                  "isDefault": "Y"
+                }, {
+                  "id": "2",
+                  "nickname": "杨猛",
+                  "phone": "18605321921",
+                  "province": "37",
+                  "provinceName": "山东省",
+                  "city": "02",
+                  "cityName": "青岛市",
+                  "county": "04",
+                  "countyName": "崂山区",
+                  "address": "辽阳东路同和路728号金光丽园",
+                  "isDefault": "N"
+                }]
+    
+    /add:
+      displayName: 增加收货地址
+      description: 增加收货地址，省份、城市、区县、详细地址、收货人、收货人手机号、是否默认
+      post:
+        is:
+          - respWithoutData:
+        body:
+          application/x-www-form-urlencoded:
+            formParameters:
+              nickname:
+                displayName: nickname
+                description: 收货人姓名
+                type: string
+                required: true
+                example: 刘保全
+              phone:
+                displayName: phone
+                description: 收货人手机号
+                type: string
+                required: true
+                example: 15689952699
+              province:
+                displayName: province
+                description: 省份编码
+                type: string
+                required: true
+                example: 37
+              provinceName:
+                displayName: provinceName
+                description: 省份名称
+                type: string
+                required: true
+                example: 山东省
+              city:
+                displayName: city
+                description: 城市编码
+                type: string
+                required: true
+                example: 02
+              cityName:
+                displayName: cityName
+                description: 城市名称
+                type: string
+                required: true
+                example: 青岛
+              county:
+                displayName: county
+                description: 区县编码
+                type: string
+                required: true
+                example: 03
+              countyName:
+                displayName: countyName
+                description: 区县名称
+                type: string
+                required: true
+                example: 市北区
+              address:
+                displayName: address
+                description: 详细地址
+                type: string
+                required: true
+                example: 夹岭沟小区16号楼
+              isDefault:
+                displayName: isDefault
+                description: 是否默认 Y默认
+                enum: ['Y','N']
+                required: true
+                example: Y
+    /update/{id}:
+      displayName: 修改收货地址
+      description: 修改收货地址，省份、城市、区县、详细地址、收货人、收货人手机号、是否默认
+      uriParameters:
+        id:
+          displayName: id
+          description: 收货地址ID
+          type: string
+          required: true
+          example: 1234
+      post:
+        is:
+          - respWithoutData:
+        body:
+          application/x-www-form-urlencoded:
+            formParameters:
+              nickname:
+                displayName: nickname
+                description: 收货人姓名
+                type: string
+                required: true
+                example: 刘保全
+              phone:
+                displayName: phone
+                description: 收货人手机号
+                type: string
+                required: true
+                example: 15689952699
+              province:
+                displayName: province
+                description: 省份编码
+                type: string
+                required: true
+                example: 37
+              provinceName:
+                displayName: provinceName
+                description: 省份名称
+                type: string
+                required: true
+                example: 山东省
+              city:
+                displayName: city
+                description: 城市编码
+                type: string
+                required: true
+                example: 02
+              cityName:
+                displayName: cityName
+                description: 城市名称
+                type: string
+                required: true
+                example: 青岛
+              county:
+                displayName: county
+                description: 区县编码
+                type: string
+                required: true
+                example: 03
+              countyName:
+                displayName: countyName
+                description: 区县名称
+                type: string
+                required: true
+                example: 市北区
+              address:
+                displayName: address
+                description: 详细地址
+                type: string
+                required: true
+                example: 夹岭沟小区16号楼
+              isDefault:
+                displayName: isDefault
+                description: 是否默认 Y默认
+                enum: ['Y','N']
+                required: true
+                example: Y
+      
+    /delete/{id}:
+      displayName: 修改收货地址
+      description: 修改收货地址，省份、城市、区县、详细地址、收货人、收货人手机号、是否默认
+      uriParameters:
+        id:
+          displayName: id
+          description: 收货地址ID
+          type: string
+          required: true
+          example: 1234
+      delete:
+        is:
+          - respWithoutData:
+      
+    /{id}:
+      displayName: 查询收货地址信息
+      description: 查询收货地址信息
+      uriParameters:
+        id:
+          displayName: id
+          description: 收货地址ID
+          type: string
+          required: true
+          example: 123456
+      get:
+        is:
+          - respWithData:
+              exampleSchema: !include schema/biz/farmer-address.schema
+              exampleData: | 
+                {
+                  "id": "1",
+                  "nickname": "刘保全",
+                  "phone": "15689952699",
+                  "province": "37",
+                  "provinceName": "山东省",
+                  "city": "02",
+                  "cityName": "青岛市",
+                  "county": "03",
+                  "countyName": "市北区",
+                  "address": "夹岭沟小区16号楼",
+                  "isDefault": "Y"
+                }
+            
+          
+      
+    /setDefault/{id}:
+      displayName: 设置默认收货地址
+      description: 设置默认收货地址
+      uriParameters:
+        id:
+          displayName: id
+          description: 收货地址ID
+          type: string
+          required: true
+          example: 123456
+      post:
+        is:
+          - respWithoutData:
+  /agency:
+    displayName: 养殖户二级经销商维护
+    description: 养殖户二级经销商维护，包含查询二级经销商、新增二级经销商、删除二级经销商和设置默认二级经销商
+    /list:
+      displayName: 查询养殖户二级经销商列表
+      description: 查询养殖户二级经销商列表
+      get:
+        is:
+          - respWithData:
+              exampleSchema: !include schema/biz/farmer-agency-list.schema
+              exampleData: | 
+                [{
+                  "id": "1",
+                  "province": "37",
+                  "provinceName": "山东省",
+                  "city": "02",
+                  "cityName": "青岛市",
+                  "county": "03",
+                  "countyName": "市北区",
+                  "address": "夹岭沟小区16号楼",
+                  "companyName": "易邦生物",
+                  "isDefault": "Y"
+                }, {
+                  "id": "2",
+                  "province": "37",
+                  "provinceName": "山东省",
+                  "city": "02",
+                  "cityName": "青岛市",
+                  "county": "04",
+                  "countyName": "崂山区",
+                  "address": "辽阳东路同和路728号金光丽园",
+                  "companyName": "易邦生物",
+                  "isDefault": "N"
+                }]
+        
+    
+    /add:
+      displayName: 养殖户新增二级经销商
+      description: 养殖户新增二级经销商
+      post:
+        is:
+          - respWithoutData:
+        body:
+          application/x-www-form-urlencoded:
+            formParameters:
+              province:
+                displayName: province
+                description: 省份编码
+                type: string
+                required: true
+                example: 37
+              provinceName:
+                displayName: provinceName
+                description: 省份名称
+                type: string
+                required: true
+                example: 山东省
+              city:
+                displayName: city
+                description: 城市编码
+                type: string
+                required: true
+                example: 02
+              cityName:
+                displayName: cityName
+                description: 城市名称
+                type: string
+                required: true
+                example: 青岛
+              county:
+                displayName: county
+                description: 区县编码
+                type: string
+                required: true
+                example: 03
+              countyName:
+                displayName: countyName
+                description: 区县名称
+                type: string
+                required: true
+                example: 市北区
+              address:
+                displayName: address
+                description: 详细地址
+                type: string
+                required: true
+                example: 夹岭沟小区16号楼
+              companyName:
+                displayName: companyName
+                description: 工商名称
+                type: string
+                required: true
+                example: 易邦生物
+              isDefault:
+                displayName: isDefault
+                description: 是否默认 Y默认
+                enum: ['Y','N']
+                required: true
+                example: Y
+          
+      
+    /delete/{id}:
+      displayName: 养殖户删除二级经销商
+      description: 养殖户删除二级经销商
+      uriParameters:
+        id:
+          displayName: id
+          description: 二级经销商ID
+          type: string
+          required: true
+          example: 1234
+      delete:
+        is:
+          - respWithoutData:
+    
+    /setDefault/{id}:
+      displayName: 设置默认二级经销商
+      description: 设置默认二级经销商
+      uriParameters:
+        id:
+          displayName: id
+          description: 二级经销商ID
+          type: string
+          required: true
+          example: 1234
+      post:
+        is:
+          - respWithoutData:
+            
+            

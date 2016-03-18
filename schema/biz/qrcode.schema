@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "code": {
+      "id": "http://jsonschema.net/code",
+      "type": "string",
+      "description": "响应编码"
+    },
+    "data": {
+      "id": "http://jsonschema.net/data",
+      "type": "object",
+      "properties": {
+        "id": {
+          "id": "http://jsonschema.net/data/id",
+          "type": "string",
+          "description": "二维码唯一值"
+        },
+        "name": {
+          "id": "http://jsonschema.net/data/name",
+          "type": "string",
+          "description": "疫苗名称"
+        },
+        "type": {
+          "id": "http://jsonschema.net/data/type",
+          "type": "string",
+          "description": "疫苗类型/批次"
+        },
+        "contact": {
+          "id": "http://jsonschema.net/data/contact",
+          "type": "string",
+          "description": "联系方式"
+        },
+        "picUrl": {
+          "id": "http://jsonschema.net/data/picUrl",
+          "type": "string",
+          "description": "疫苗图片"
+        },
+        "jifen": {
+          "id": "http://jsonschema.net/data/jifen",
+          "type": "integer",
+          "description": "可领取积分"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "code": {
+      "id": "http://jsonschema.net/code",
+      "type": "string",
+      "description": "响应编码"
+    },
+    "data": {
+      "id": "http://jsonschema.net/data",
+      "type": "object",
+      "description": "响应内容",
+      "properties": {
+        "pageNumber": {
+          "id": "http://jsonschema.net/data/pageNumber",
+          "type": "integer",
+          "description": "当前数据页码"
+        },
+        "pageSize": {
+          "id": "http://jsonschema.net/data/pageSize",
+          "type": "integer",
+          "description": "每页数据数量"
+        },
+        "totalRow": {
+          "id": "http://jsonschema.net/data/totalRow",
+          "type": "integer",
+          "description": "数据总数量"
+        },
+        "list": {
+          "id": "http://jsonschema.net/data/list",
+          "type": "array",
+          "items": {},
+          "description": "数据集合"
+        }
+      }
+    },
+    "required": [
+      "pageNumber",
+      "pageSize",
+      "totalRow",
+      "list"
+    ]
+  },
+  "required": [
+    "code",
+    "data"
+  ]
+}

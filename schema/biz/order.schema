@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "code": {
+      "id": "http://jsonschema.net/code",
+      "type": "string",
+      "description": "响应编码"
+    },
+    "data": {
+      "id": "http://jsonschema.net/data",
+      "type": "object",
+      "properties": {
+        "id": {
+          "id": "http://jsonschema.net/data/id",
+          "type": "string",
+          "description": "订单ID"
+        },
+        "status": {
+          "id": "http://jsonschema.net/data/status",
+          "type": "string",
+          "description": "订单状态"
+        },
+        "jifen": {
+          "id": "http://jsonschema.net/data/jifen",
+          "type": "string",
+          "description": "订单总花费积分"
+        },
+        "products": {
+          "id": "http://jsonschema.net/data/products",
+          "type": "array",
+          "items": {
+            "id": "http://jsonschema.net/data/products/1",
+            "type": "object",
+            "properties": {
+              "id": {
+                "id": "http://jsonschema.net/data/products/1/id",
+                "type": "string",
+                "description": "商品ID"
+              },
+              "name": {
+                "id": "http://jsonschema.net/data/products/1/name",
+                "type": "string",
+                "description": "商品名称"
+              },
+              "jifen": {
+                "id": "http://jsonschema.net/data/products/1/jifen",
+                "type": "integer",
+                "description": "商品积分"
+              },
+              "amount": {
+                "id": "http://jsonschema.net/data/products/1/amount",
+                "type": "integer",
+                "description": "商品数量"
+              },
+              "picUrl": {
+                "id": "http://jsonschema.net/data/products/1/picUrl",
+                "type": "string",
+                "description": "商品图片"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

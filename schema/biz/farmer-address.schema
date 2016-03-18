@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "code": {
+      "id": "http://jsonschema.net/code",
+      "type": "string",
+      "description": "响应编码"
+    },
+    "data": {
+      "id": "http://jsonschema.net/data",
+      "type": "object",
+      "properties": {
+        "id": {
+          "id": "http://jsonschema.net/data/id",
+          "type": "string",
+          "description": "收货地址ID"
+        },
+        "nickname": {
+          "id": "http://jsonschema.net/data/nickname",
+          "type": "string",
+          "description": "收货人"
+        },
+        "phone": {
+          "id": "http://jsonschema.net/data/phone",
+          "type": "string",
+          "description": "手机号码"
+        },
+        "province": {
+          "id": "http://jsonschema.net/data/province",
+          "type": "string",
+          "description": "省份编码"
+        },
+        "provinceName": {
+          "id": "http://jsonschema.net/data/provinceName",
+          "type": "string",
+          "description": "省份名称"
+        },
+        "city": {
+          "id": "http://jsonschema.net/data/city",
+          "type": "string",
+          "description": "城市编码"
+        },
+        "cityName": {
+          "id": "http://jsonschema.net/data/cityName",
+          "type": "string",
+          "description": "城市名称"
+        },
+        "county": {
+          "id": "http://jsonschema.net/data/county",
+          "type": "string",
+          "description": "区县编码"
+        },
+        "countyName": {
+          "id": "http://jsonschema.net/data/countyName",
+          "type": "string",
+          "description": "区县名称"
+        },
+        "address": {
+          "id": "http://jsonschema.net/data/address",
+          "type": "string",
+          "description": "详细地址"
+        },
+        "isDefault": {
+          "id": "http://jsonschema.net/data/isDefault",
+          "type": "string",
+          "description": "是否默认"
+        }
+      }
+    }
+  },
+  "required": [
+    "code",
+    "data"
+  ]
+}

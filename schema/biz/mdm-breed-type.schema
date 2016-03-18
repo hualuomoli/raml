@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "code": {
+      "id": "http://jsonschema.net/code",
+      "type": "string",
+      "description": "响应编码"
+    },
+    "data": {
+      "id": "http://jsonschema.net/data",
+      "type": "array",
+      "items": {
+        "id": "http://jsonschema.net/data/1",
+        "type": "object",
+        "properties": {
+          "id": {
+            "id": "http://jsonschema.net/data/1/id",
+            "type": "string",
+            "description": "养殖类型编码"
+          },
+          "name": {
+            "id": "http://jsonschema.net/data/1/name",
+            "type": "string",
+            "description": "养殖类型名称"
+          }
+        }
+      }
+    }
+  }
+}

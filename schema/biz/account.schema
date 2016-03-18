@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "code": {
+      "id": "http://jsonschema.net/code",
+      "type": "string",
+      "description": "响应编码"
+    },
+    "data": {
+      "id": "http://jsonschema.net/data",
+      "type": "object",
+      "properties": {
+        "photoUrl": {
+          "id": "http://jsonschema.net/data/photoUrl",
+          "type": "string",
+          "description": "头像URL"
+        },
+        "gender": {
+          "id": "http://jsonschema.net/data/gender",
+          "type": "string",
+          "description": "性别"
+        }
+      }
+    },
+    "required": [
+      "photoUrl",
+      "gender"
+    ]
+  },
+  "required": [
+    "code",
+    "data"
+  ]
+}

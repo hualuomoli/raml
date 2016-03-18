@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "code": {
+      "id": "http://jsonschema.net/code",
+      "type": "string",
+      "description": "响应编码"
+    },
+    "data": {
+      "id": "http://jsonschema.net/data",
+      "type": "object",
+      "properties": {
+        "time": {
+          "id": "http://jsonschema.net/data/time",
+          "type": "string",
+          "description": "参与时间"
+        },
+        "activeName": {
+          "id": "http://jsonschema.net/data/activeName",
+          "type": "string",
+          "description": "活动名称，如扫码赚积分，大转盘"
+        },
+        "amount": {
+          "id": "http://jsonschema.net/data/amount",
+          "type": "integer",
+          "description": "数量"
+        },
+        "type": {
+          "id": "http://jsonschema.net/data/type",
+          "type": "integer",
+          "description": "参与类型 1扫码赚积分 2商城换购 3大转盘"
+        }
+      }
+    }
+  },
+  "required": [
+    "code",
+    "data"
+  ]
+}

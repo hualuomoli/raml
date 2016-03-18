@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "code": {
+      "id": "http://jsonschema.net/code",
+      "type": "string",
+      "description": "响应编码"
+    },
+    "msg": {
+      "id": "http://jsonschema.net/msg",
+      "type": "string",
+      "description": "响应内容"
+    }
+  },
+  "required": [
+    "code",
+    "msg"
+  ]
+}
