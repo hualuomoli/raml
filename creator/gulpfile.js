@@ -55,8 +55,7 @@ gulp.task('js:assets', function () {
       './bower_components/angular-sanitize/angular-sanitize.js',
       './bower_components/angular-touch/angular-touch.js',
 
-      './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-      './bower_components/front-angular-blocks/dist/front-angular-blocks.js'
+      './bower_components/angular-bootstrap/ui-bootstrap-tpls.js'
     ])
     .pipe(concat('assets.js'))
     .pipe(rev())
@@ -83,6 +82,7 @@ gulp.task('js:app', function () {
       './src/app/**/*.factory.js', // factory
       './src/app/**/*.service.js', // service
       './src/app/**/*.controller.js', // controller
+      './src/app/**/*.interceptor.js', // interceptor
       './src/app/**/*.config.js', // config
       './src/app/**/*.router.js', // router
 
