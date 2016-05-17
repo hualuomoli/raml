@@ -8,13 +8,14 @@ var session = require('express-session')
 var multer = require('multer');
 var colors = require('colors');
 
+var config = require('./config/config');
 var logger = require('./logger/logger');
 var routes = require('./routes');
 
 var app = express();
 
 // set port
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || config.port);
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, './favicon.ico')));
@@ -56,7 +57,7 @@ app.use('/bower_components', express.static(path.join(__dirname, 'bower_componen
 app.use(express.static(path.join(__dirname, 'src')));
 
 
-app.use('/file', express.static(path.join(__dirname, 'raml')));
+app.use('/file', express.static(path.join(__dirname, 'files')));
 
 
 

@@ -234,11 +234,19 @@ function readData(filename) {
 }
 
 // 写数据
-function writeData(filename, objectData) {
-  if (!objectData) {
+function writeData(filename, data) {
+  if (!data) {
     return;
   }
-  fs.writeFileSync(filename, JSON.stringify(objectData), "UTF-8");
+  var str;
+  if (typeof data === 'string') {
+    str = data;
+  } else if (typeof data === 'object') {
+    str = JSON.stringify(data);
+  } else {
+    throw new Error('can not support data type ' + (typeof data));
+  }
+  fs.writeFileSync(filename, str, "UTF-8");
 }
 
 // 删除文件
@@ -257,7 +265,8 @@ function createRamlFile(raml) {
 
   // create html file
   var scriptFileName = path.join(__dirname, '../script/create.' + config.scriptSuffix);
-  var params = [raml.id];
+  var filePath = path.join(__dirname, '../files');
+  var params = [filePath, raml.id];
 
   processUtil.executeScript(scriptFileName, params);
 
