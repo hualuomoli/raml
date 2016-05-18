@@ -7,7 +7,7 @@
   <meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  <!-- build:css-assets -->
+  <!-- build:css-cdn -->
   <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.css" />
   <link rel="stylesheet" type="text/css" href="../bower_components/simple-line-icons/css/simple-line-icons.css" />
@@ -23,25 +23,29 @@
   <div class="app app-header-fixed app-aside-fixed">
     <div ui-view></div>
   </div>
-  <!-- build:js-assets -->
+  <!-- build:js-cdn -->
   <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
   <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
   <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-  <script type="text/javascript" src="../bower_components/oclazyload/dist/ocLazyLoad.js"></script>
-  <!-- ========== -->
-  <script type="text/javascript" src="../bower_components/ngstorage/ngStorage.js"></script>
   <script type="text/javascript" src="../bower_components/angular-animate/angular-animate.js"></script>
   <script type="text/javascript" src="../bower_components/angular-cookies/angular-cookies.js"></script>
   <script type="text/javascript" src="../bower_components/angular-resource/angular-resource.js"></script>
   <script type="text/javascript" src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
   <script type="text/javascript" src="../bower_components/angular-touch/angular-touch.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js-assets -->
+  <script type="text/javascript" src="../bower_components/oclazyload/dist/ocLazyLoad.js"></script>
+  <script type="text/javascript" src="../bower_components/ngstorage/ngStorage.js"></script>
   <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <!-- endbuild -->
  
   <!-- build:js-app -->
-  <!-- js -->
   <script type="text/javascript" src="./js/app.js"></script>
+ <!-- endbuild -->
+
+  <!-- build:js-angular -->
   <!-- assets -->
   <!-- logger -->
   <script type="text/javascript" src="./app/logger/logger.module.js"></script>
