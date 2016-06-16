@@ -34,6 +34,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "log4js": "^0.6.33",
+    "minimist": "^1.2.0",
     "morgan": "^1.7.0",
     "multer": "^0.1.8",
     "serve-favicon": "^2.3.0",

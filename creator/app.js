@@ -8,7 +8,7 @@ var session = require('express-session')
 var multer = require('multer');
 var colors = require('colors');
 
-var config = require('./config/config');
+var config = require('./config/config').setConfig();
 var logger = require('./logger/logger');
 var routes = require('./routes');
 
