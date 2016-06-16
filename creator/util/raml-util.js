@@ -88,6 +88,7 @@ function getGETParameters(resource) {
       parameters += getIndent(4) + key + ': ' + rule[key] + '\n';
     }
   }
+  return parameters;
 }
 
 // post/put方法参数
@@ -114,6 +115,7 @@ function getPostParameters(resource) {
       body += getIndent(6) + key + ': ' + rule[key] + '\n';
     }
   }
+  return body;
 }
 
 // post/put json方法参数
