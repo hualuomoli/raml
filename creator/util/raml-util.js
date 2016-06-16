@@ -14,6 +14,8 @@ function getRaml(resource) {
   content += '\n\n';
   // method head
   content += getMethodHead(resource);
+  // header parameter
+  content += getHeaderParameters(resource);
   // parameter
   switch (resource.method) {
   case 'get':
@@ -63,6 +65,29 @@ function getUriParameters(resource) {
     var rule = uriParameter.rule;
     for (var key in rule) {
       parameters += getIndent(3) + key + ': ' + rule[key] + '\n';
+    }
+  }
+  return parameters;
+}
+
+// header参数
+function getHeaderParameters(resource) {
+  var parameters = '';
+  var headerParams = resource.headerParams;
+  if (headerParams === undefined || headerParams.length === 0) {
+    return parameters;
+  }
+  parameters += getIndent(2) + 'headers:' + '\n';
+  for (var i = 0; i < headerParams.length; i++) {
+    var headParameter = headerParams[i];
+    parameters += getIndent(3) + headParameter.displayName + ':' + '\n';
+    parameters += getIndent(4) + 'displayName: ' + headParameter.displayName + '\n';
+    parameters += getIndent(4) + 'description: ' + headParameter.description + '\n';
+    parameters += getIndent(4) + 'type: ' + headParameter.type + '\n';
+    // rule
+    var rule = headParameter.rule;
+    for (var key in rule) {
+      parameters += getIndent(4) + key + ': ' + rule[key] + '\n';
     }
   }
   return parameters;
